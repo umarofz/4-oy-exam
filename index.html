@@ -29,17 +29,93 @@
     <section class="results">
       <div class="container">
         <div class="results__container">
-          <h3 class="results__heading">Showing <span class="results__span">18</span> Result(s)</h3>
+          <h3 class="results__heading">Showing <span class="results__span">0</span> Result(s)</h3>
           <button class="results__btn">Order by newest</button>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero">
+      <div class="container">
+        <div class="hero__container">
+          <div class="hero__left">
+            <div class="hero__padding">
+              <h3 class="hero__left-heading">Bookmarks</h3>
+              <p class="hero__left-text">If you don't like to read, you haven't found the right book</p>
+              <ul class="hero__left-list">
+                
+              </ul>
+            </div>
+          </div>
+          <div class="hero__right">
+            <ul class="hero__right-list">
+              
+            </ul>
+          </div>
         </div>
       </div>
     </section>
   </main>
   
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__container"></div>
+  
+  <template id="books__temp">
+    <li class="hero__right-item">
+      <div class="hero__right-item-img-wrapper">
+        <img class="hero__right-item-img" src="./images/li-img.png" alt="book-img" width="201" height="202">
+      </div>
+      
+      <h4 class="hero__right-item-heading">Python</h4>
+      <p class="hero__right-item-author">David M. Beazley</p>
+      <h4 class="hero__right-item-year">2009</h4>
+      
+      <div class="hero__right-item-btn-wrapper">
+        <button class="hero__right-item-btn-bookmark">Bookmark</button>
+        <button class="hero__right-item-btn-info">More Info</button>
+      </div>
+      <a target="_blank" class="hero__right-item-btn-read">Read</a>
+    </li>
+  </template>
+  
+  <template id="info__temp">
+    <div class="hero__right-info" id="hero__info">
+      <div class="hero__right-header">
+        <h4 class="hero__right-info-heading">Python</h4>
+        
+        <button class="hero__right-info-cross"><img src="./images/burger-cross.svg" alt="info-menu" width="15" height="15"></button>
+      </div>
+      
+      <div class="hero__right-info-body">
+        <img class="hero__right-info-img" src="./images/li-img.png" alt="hero__right-info-img">
+        
+        <p class="hero__right-info-text">Culpa nulla pariatur cupidatat nisi incididunt ea do ipsum. Incididunt quis mollit elit commodo cillum eiusmod reprehenderit labore irure. Cillum et incididunt et nostrud exercitation quis aute laboris non ut adipisicing. Laboris ad minim aute nulla proident deserunt velit anim sunt aliquip ut sit. Exercitation aliquip ullamco officia non aliqua. Sint deserunt aliquip veniam id eiusmod sit consectetur mollit ea aliqua officia consequat. Magna non mollit nisi est commodo voluptate aute id. Deserunt nostrud id do in nisi mollit deserunt non. Pariatur fugiat cillum irure elit sint nisi ad ipsum culpa deserunt cupidatat esse consequat laboris. Id aliquip non consectetur esse proident duis Lorem.</p>
+        
+        <ul class="hero__info-list">
+          <li class="hero__info-item">
+            <p class="hero__info-item-current">Author : <span class="hero__info-item-span hero__span-author">Author 2</span> <span class="hero__info-item-span hero__span-author">Jamal Kasper</span></p>
+            <p class="hero__info-item-current">Published : <span class="hero__info-item-span hero__span-year">2019</span></p>
+            <p class="hero__info-item-current">Publishers: <span class="hero__info-item-span hero__span-publishers"><span class="hero__info-item-span">Hollman</span></span></p>
+            <p class="hero__info-item-current">Categories: <span class="hero__info-item-span hero__span-categories">Computers</span></p>
+            <p class="hero__info-item-current">Pages Count: <span class="hero__info-item-span hero__span-pages">346</span></p>
+          </li>
+        </ul>
+        <button class="hero__read-btn">Read</button>
+      </div>
     </div>
-  </footer>
+  </template>
+  
+  <template id="bookmark__temp">
+    <li class="hero__left-item">
+      <div class="hero__left-item-right">
+        <h4 class="hero__left-item-right-heading">Python</h4>
+        <p class="hero__left-item-right-text">David M. Beazley</p>
+      </div>
+      <div class="hero__left-item-left">
+        <a target="_blank" class="hero__left-item-right-read"><img class="hero__left-item-right-img-read" src="./images/book-open-img.svg" alt="book-open-img" width="24" height="24"></a>
+        <button class="hero__left-item-right-delete"><img class="hero__left-item-right-img-delete" src="./images/book-delete-img.svg" alt="book-delete-img" width="24" height="24"></button>
+      </div>
+    </li>
+  </template>
+  
+  <script src="./js/main.js"></script>
 </body>
 </html>
