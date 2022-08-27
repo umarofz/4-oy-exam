@@ -1,22 +1,48 @@
 .results {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
     
     &__container {
         display: flex;
         align-items: center;
+        padding: 11px 1px 11px 306px;
     }
     
     &__heading {
+        width: 141px;
         font-family: 'Rubik';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
         line-height: 17px;
         color: #222531;
+        margin-right: 580px;
     }
     
     &__span {
     }
     
     &__btn {
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        background: #A6B0C3;
+        border-radius: 4px;
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        padding: 5px 13px;
+        max-width: 165px;
+        
+        &::before {
+            content: url("./../../images/calendar-img.svg");
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
     }
 }
