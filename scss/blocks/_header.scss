@@ -1,0 +1,49 @@
+.header {
+    margin-top: 20px;
+    margin-bottom: 11px;
+    
+    &__container {
+        display: flex;
+        align-items: center;
+    }
+    
+    &__link {
+        text-decoration: none;
+        margin-right: 56px;
+    }
+    
+    &__img {
+        width: 226px;
+        height: 44px;
+    }
+    
+    &__form {
+    }
+    
+    &__form-label {
+        position: relative;
+        &::before {
+            content: url("./../../images/search-btn.svg");
+            position: absolute;
+            top: 0;
+            left: 20px;
+        }
+    }
+    
+    &__form-input {
+        border: none;
+        width: 670px;
+        height: 48px;
+        background: #F8FAFD;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        margin-right: 219px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 48px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

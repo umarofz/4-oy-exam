@@ -1,0 +1,22 @@
+.results {
+    
+    &__container {
+        display: flex;
+        align-items: center;
+    }
+    
+    &__heading {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #222531;
+    }
+    
+    &__span {
+    }
+    
+    &__btn {
+    }
+}
