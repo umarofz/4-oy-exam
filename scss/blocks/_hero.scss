@@ -8,7 +8,7 @@
         background: #FFFFFF;
         box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
         width: 268px;
-        margin-top: 50px;
+        margin-top: px;
     }
     
     &__padding {
@@ -95,6 +95,7 @@
         outline: none;
         background: none;
         margin-left: -10px;
+        cursor: pointer;
     }
     
     &__left-item-right-img-delete {
@@ -106,6 +107,13 @@
         padding-right: 40px;
         background: #E5E5E5;
         position: relative;
+    }
+    &__right-dark {
+       background-color: black;
+       border: 1px solid wheat;
+    }
+    &__right-light {
+        background: #E5E5E5;
     }
     
     &__right-list {
@@ -185,6 +193,7 @@
         color: #000000;
         margin-right: 6px;
         margin-bottom: 5px;
+        cursor: pointer;
     }
     
     &__right-item-btn-info {
@@ -199,6 +208,7 @@
         color: #0D75FF;
         background: rgba(13, 117, 255, 0.05);
         border-radius: 4px;
+        cursor: pointer;
     }
     
     &__right-item-btn-read {
@@ -234,20 +244,21 @@
     }
     
     &__right-header {
+        width: 552px;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
         background: #F8FAFD;
         padding: 23px 35px 22px 33px;
     }
     
     &__right-info-heading {
+        width: 270px;
         font-family: 'Rubik';
         font-style: normal;
         font-weight: 500;
         font-size: 24px;
         line-height: 28px;
         color: #222531;
-        margin-right: 383px;
     }
     
     &__right-info-cross {

@@ -17,6 +17,7 @@
         height: 44px;
     }
     
+    
     &__form {
     }
     
@@ -45,5 +46,23 @@
         &:focus {
             outline: none;
         }
+    }
+
+    &__dark-mode {
+        border: none;
+        outline: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    &__dark-bg {
+        background-color: black;
+    }
+
+    &__white {
+        color: white;
+    }
+    &__black {
+        color: black;
     }
 }

@@ -1,34 +1,103 @@
-let elBtn = document.querySelector(".hero__right-item-btn-info");
+// GET ELEMENTS FROM HTML
+let elBody = document.querySelector(".body");
+let elSvg = document.querySelector(".header__svg");
+let elDarkBtn = document.querySelector(".header__dark-mode");
+let elNewest = document.querySelector(".results__btn");
 let elCounter = document.querySelector(".results__span");
 let elCross = document.querySelector(".hero__right-info-cross");
 let elBookmarkWrapper = document.querySelector(".hero__left-list");
 let elInfoWrapper = document.querySelector(".hero__right-info");
-let elBookTemplate = document.querySelector("#books__temp").content
-let elInfoTemplate = document.querySelector("#info__temp").content
-let elBookmarkTemplate = document.querySelector("#bookmark__temp").content
+let elInfoHeader = document.querySelector(".hero__right-header");
+let elBookTemplate = document.querySelector("#books__temp").content;
+let elInfoTemplate = document.querySelector("#info__temp").content;
+let elBookmarkTemplate = document.querySelector("#bookmark__temp").content;
 let elBooksWrapper = document.querySelector(".hero__right-list");
 let elInfoWrapperRender = document.querySelector(".hero__right");
 let elForm = document.querySelector(".header__form");
 let elFormInput = document.querySelector(".header__form-input");
 
-let localStorageBooks = JSON.parse(localStorage.getItem("book"))
-let bookmarkedBooks = localStorageBooks ? localStorageBooks : []
-renderBookmarks(bookmarkedBooks)
+// localStorage SETTINGS
+let localStorageBooks = JSON.parse(localStorage.getItem("book"));
+let bookmarkedBooks = localStorageBooks ? localStorageBooks : [];
+renderBookmarks(bookmarkedBooks);
 
 elForm.addEventListener("submit", function(evt) {
     evt.preventDefault();
-    
     let formInput = elFormInput.value.trim();
     
-    fetch(`https://books.googleapis.com/books/v1/volumes?maxResults=12&orderBy=newest&q=${formInput}`)
+    fetch(`https://books.googleapis.com/books/v1/volumes?q=${formInput}`)
     .then(res => res.json())
     .then(data => {
         renderBooks(data.items, elBooksWrapper)
         elFormInput.value = null;
     })
+    
+    elNewest.addEventListener("click", function() {
+        fetch(`https://books.googleapis.com/books/v1/volumes?q=${formInput}&orderBy=newest`)
+        .then(res => res.json())
+        .then(data => {
+            renderBooks(data.items, elBooksWrapper)
+            elFormInput.value = null;
+        })
+    })
 })
 
+elBooksWrapper.addEventListener("click", function(evt) {
+    let infoId = evt.target.dataset.infoId;
+    let bookmarkId = evt.target.dataset.bookmarkId
+    
+    if (infoId) {
+        fetch(`https://www.googleapis.com/books/v1/volumes/${infoId}`)
+        .then(res => res.json())
+        .then(data => {
+            renderInfo([data])
+            
+        })
+    } 
+    
+    if (bookmarkId) {
+        if (bookmarkedBooks.length == 0) {
+            fetch(`https://www.googleapis.com/books/v1/volumes/${bookmarkId}`)
+            .then(res => res.json())
+            .then(data => {
+                bookmarkedBooks.push(data)
+                renderBookmarks(bookmarkedBooks)
+                localStorage.setItem("book", JSON.stringify(bookmarkedBooks))
+            })
+        } else if (!bookmarkedBooks.find(item => item.id == bookmarkId)) {
+            fetch(`https://www.googleapis.com/books/v1/volumes/${bookmarkId}`)
+            .then(res => res.json())
+            .then(data => {
+                bookmarkedBooks.push(data)
+                renderBookmarks(bookmarkedBooks)
+                localStorage.setItem("book", JSON.stringify(bookmarkedBooks))
+            })
+        }
+        renderBookmarks(bookmarkedBooks)
+    }
+})
 
+elBookmarkWrapper.addEventListener("click", function(evt) {
+    let bookmarkCurrentId = evt.target.closest(".hero__left-item-right-delete").dataset.bookmarkId;
+    
+    if (bookmarkCurrentId) {
+        let findBookmarkId = bookmarkedBooks.findIndex(function(item) {
+            return item.id == bookmarkCurrentId
+        })
+        
+        bookmarkedBooks.splice(findBookmarkId, 1)
+        localStorage.setItem("book", JSON.stringify(bookmarkedBooks))
+    }
+    renderBookmarks(bookmarkedBooks)
+})
+
+elDarkBtn.addEventListener("click", function() {
+    elBody.classList.toggle("header__dark-bg")
+    elInfoWrapperRender.classList.remove("hero__right-light")
+    elInfoWrapperRender.classList.toggle("hero__right-dark")
+    elSvg.classList.toggle("header__black")
+    elSvg.classList.toggle("header__white")
+})
 
 
 function renderBooks(array, wrapper) {
@@ -54,46 +123,6 @@ function renderBooks(array, wrapper) {
     wrapper.appendChild(fragment)
 }
 
-
-elBooksWrapper.addEventListener("click", function(evt) {
-    let infoId = evt.target.dataset.infoId;
-    
-    if (infoId) {
-        fetch(`https://www.googleapis.com/books/v1/volumes/${infoId}`)
-        .then(res => res.json())
-        .then(data => {
-            renderInfo([data])
-            
-        })
-    }
-})
-
-elBooksWrapper.addEventListener("click", function(evt) {
-    let bookmarkId = evt.target.dataset.bookmarkId
-    
-    if (bookmarkId) {
-        if (bookmarkedBooks.length == 0) {
-            fetch(`https://www.googleapis.com/books/v1/volumes/${bookmarkId}`)
-            .then(res => res.json())
-            .then(data => {
-                bookmarkedBooks.push(data)
-                renderBookmarks(bookmarkedBooks)
-                localStorage.setItem("book", JSON.stringify(bookmarkedBooks))
-            })
-        } else if (!bookmarkedBooks.find(item => item.id == bookmarkId)) {
-            fetch(`https://www.googleapis.com/books/v1/volumes/${bookmarkId}`)
-            .then(res => res.json())
-            .then(data => {
-                bookmarkedBooks.push(data)
-                renderBookmarks(bookmarkedBooks)
-                localStorage.setItem("book", JSON.stringify(bookmarkedBooks))
-            })
-        }
-        renderBookmarks(bookmarkedBooks)
-    }
-})
-
-
 function renderInfo(array) {
     let fragment = document.createDocumentFragment();
     
@@ -116,10 +145,6 @@ function renderInfo(array) {
     elInfoWrapperRender.appendChild(fragment)
 }
 
-// elCross.addEventListener("click", function(evt) {
-//     console.log(evt.target.dataset.crossId);
-// })
-
 function renderBookmarks(array) {
     elBookmarkWrapper.innerHTML = null;
     let fragment = document.createDocumentFragment();
@@ -137,17 +162,3 @@ function renderBookmarks(array) {
     
     elBookmarkWrapper.appendChild(fragment)
 }
-
-elBookmarkWrapper.addEventListener("click", function(evt) {
-    let bookmarkCurrentId = evt.target.closest(".hero__left-item-right-delete").dataset.bookmarkId;
-    
-    if (bookmarkCurrentId) {
-        let findBookmarkId = bookmarkedBooks.findIndex(function(item) {
-            return item.id == bookmarkCurrentId
-        })
-        
-        bookmarkedBooks.splice(findBookmarkId, 1)
-        localStorage.setItem("book", JSON.stringify(bookmarkedBooks))
-    }
-    renderBookmarks(bookmarkedBooks)
-})

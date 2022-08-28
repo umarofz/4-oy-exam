@@ -418,15 +418,28 @@ p {
 .header__form-input:focus {
   outline: none;
 }
-
-.results {
-  background: #FFFFFF;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+.header__dark-mode {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
 }
+.header__dark-bg {
+  background-color: black;
+}
+.header__white {
+  color: white;
+}
+.header__black {
+  color: black;
+}
+
 .results__container {
   display: flex;
   align-items: center;
   padding: 11px 1px 11px 306px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
 }
 .results__heading {
   width: 141px;
@@ -453,6 +466,7 @@ p {
   color: #FFFFFF;
   padding: 5px 13px;
   max-width: 165px;
+  cursor: pointer;
 }
 .results__btn::before {
   content: url("./../../images/calendar-img.svg");
@@ -468,7 +482,7 @@ p {
   background: #FFFFFF;
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   width: 268px;
-  margin-top: 50px;
+  margin-top: px;
 }
 .hero__padding {
   padding-top: 25px;
@@ -541,6 +555,7 @@ p {
   outline: none;
   background: none;
   margin-left: -10px;
+  cursor: pointer;
 }
 .hero__right {
   padding-top: 40px;
@@ -548,6 +563,13 @@ p {
   padding-right: 40px;
   background: #E5E5E5;
   position: relative;
+}
+.hero__right-dark {
+  background-color: black;
+  border: 1px solid wheat;
+}
+.hero__right-light {
+  background: #E5E5E5;
 }
 .hero__right-list {
   display: flex;
@@ -615,6 +637,7 @@ p {
   color: #000000;
   margin-right: 6px;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 .hero__right-item-btn-info {
   padding: 10px 28px;
@@ -628,6 +651,7 @@ p {
   color: #0D75FF;
   background: rgba(13, 117, 255, 0.05);
   border-radius: 4px;
+  cursor: pointer;
 }
 .hero__right-item-btn-read {
   padding: 10px 106px;
@@ -658,19 +682,20 @@ p {
   display: block;
 }
 .hero__right-header {
+  width: 552px;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   background: #F8FAFD;
   padding: 23px 35px 22px 33px;
 }
 .hero__right-info-heading {
+  width: 270px;
   font-family: "Rubik";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
   color: #222531;
-  margin-right: 383px;
 }
 .hero__right-info-cross {
   border: none;
