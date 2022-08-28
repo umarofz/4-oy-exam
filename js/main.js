@@ -6,8 +6,6 @@ let elNewest = document.querySelector(".results__btn");
 let elCounter = document.querySelector(".results__span");
 let elCross = document.querySelector(".hero__right-info-cross");
 let elBookmarkWrapper = document.querySelector(".hero__left-list");
-let elInfoWrapper = document.querySelector(".hero__right-info");
-let elInfoHeader = document.querySelector(".hero__right-header");
 let elBookTemplate = document.querySelector("#books__temp").content;
 let elInfoTemplate = document.querySelector("#info__temp").content;
 let elBookmarkTemplate = document.querySelector("#bookmark__temp").content;
@@ -25,7 +23,7 @@ elForm.addEventListener("submit", function(evt) {
     evt.preventDefault();
     let formInput = elFormInput.value.trim();
     
-    fetch(`https://books.googleapis.com/books/v1/volumes?q=${formInput}`)
+    fetch(`https://books.googleapis.com/books/v1/volumes?maxResults=12&q=${formInput}`)
     .then(res => res.json())
     .then(data => {
         renderBooks(data.items, elBooksWrapper)
@@ -33,7 +31,7 @@ elForm.addEventListener("submit", function(evt) {
     })
     
     elNewest.addEventListener("click", function() {
-        fetch(`https://books.googleapis.com/books/v1/volumes?q=${formInput}&orderBy=newest`)
+        fetch(`https://books.googleapis.com/books/v1/volumes?maxResults=12&q=${formInput}&orderBy=newest`)
         .then(res => res.json())
         .then(data => {
             renderBooks(data.items, elBooksWrapper)
@@ -50,8 +48,7 @@ elBooksWrapper.addEventListener("click", function(evt) {
         fetch(`https://www.googleapis.com/books/v1/volumes/${infoId}`)
         .then(res => res.json())
         .then(data => {
-            renderInfo([data])
-            
+            renderInfo([data]) 
         })
     } 
     
