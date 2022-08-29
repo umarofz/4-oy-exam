@@ -1,5 +1,7 @@
 // GET ELEMENTS FROM HTML
 let elBody = document.querySelector(".body");
+let elHeader = document.querySelector("header");
+let elMain = document.querySelector("main");
 let elSvg = document.querySelector(".header__svg");
 let elDarkBtn = document.querySelector(".header__dark-mode");
 let elNewest = document.querySelector(".results__btn");
@@ -48,7 +50,7 @@ elBooksWrapper.addEventListener("click", function(evt) {
         fetch(`https://www.googleapis.com/books/v1/volumes/${infoId}`)
         .then(res => res.json())
         .then(data => {
-            renderInfo([data]) 
+            renderInfo([data])
         })
     } 
     
